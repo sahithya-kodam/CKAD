@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: ReplicaSet 
+metadata:
+  name: CKAD-ReplicaSet 
+  label: 
+  - tag: cert
+    tier: frontend 
+spec:
+  selector:
+    matchLabels:
+    - tag: cert
+      tier: frontend
+  replicas: 3
+  template:
+    metadata:
+     name: CKAD
+     labels:
+     - tag: cert
+       tier: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx 
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
